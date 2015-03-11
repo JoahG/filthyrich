@@ -8,7 +8,6 @@
         $('textarea').on('paste',function(e) {
           e.preventDefault();
           var text = (e.originalEvent || e).clipboardData.getData('text/html') || '<body>\n' + (e.originalEvent || e).clipboardData.getData('text/plain') + '\n</body>'
-          console.log(text)
           $(this).val(toMarkdown(text.match(/<body>(.*\n)*<\/body>/gi)[0].split('<body>')[1].split('</body>')[0]))
         }); 
       });
@@ -18,6 +17,7 @@
     below is a simple &lt;textarea&gt; element. <br>
     but, using a couple lines of javascript, it has been made to <br>
     automatically convert rich text to markdown when pasted. <br>
-    <textarea style="width:300px;height:200px;"></textarea>
+    <textarea style="width:300px;height:200px;"></textarea><br>
+    check out the code <a href="https://github.com/JoahG/filthyrich">on github</a>
   </body>
 </html>
