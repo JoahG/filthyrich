@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://domchristie.github.io/to-markdown/src/to-markdown.js"></script>
+    <script>
+      $(function(){
+        $('textarea').on('paste',function(e) {
+          e.preventDefault();
+          var text = (e.originalEvent || e).clipboardData.getData('text/html') || '<body>\n' + (e.originalEvent || e).clipboardData.getData('text/plain') + '\n</body>'
+          console.log(text)
+          $(this).val(toMarkdown(text.match(/<body>(.*\n)*<\/body>/gi)[0].split('<body>')[1].split('</body>')[0]))
+        }); 
+      });
+    </script>
+  </head>
+  <body>
+    below is a simple &lt;textarea&gt; element. <br>
+    but, using a couple lines of javascript, it has been made to <br>
+    automatically convert rich text to markdown when pasted. <br>
+    <textarea style="width:300px;height:200px;"></textarea>
+  </body>
+</html>
