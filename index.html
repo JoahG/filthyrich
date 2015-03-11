@@ -7,7 +7,8 @@
       $(function(){
         $('textarea').on('paste',function(e) {
           e.preventDefault();
-          $(this).val(toMarkdown(((e.originalEvent || e).clipboardData.getData('text/html') || '<body>\n' + (e.originalEvent || e).clipboardData.getData('text/plain') + '\n</body>').match(/<body>(.*\n)*<\/body>/gi)[0].split('<body>')[1].split('</body>')[0]))
+          var ev = (e.originalEvent || e);
+          $(this).val($(this).val() + toMarkdown(ev.clipboardData.getData('text/html').match(/<body>/) ? toMarkdown(ev.clipboardData.getData('text/html')).match(/<body>(.*\n*)*<\/body>/gi)[0].split('<body>')[1].split('</body>')[0] : ev.clipboardData.getData('text/plain')));
         }); 
       });
     </script>
